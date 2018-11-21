@@ -15,7 +15,8 @@ export default {
     format: {type: String},
     minuteInterval: {type: Number},
     secondInterval: {type: Number},
-    id: {type: String}
+    id: {type: String},
+    placeholder: {type: String},
   },
 
   data () {
@@ -54,6 +55,15 @@ export default {
         formatString = formatString.replace(new RegExp(this.apmType, 'g'), this.apm)
       }
       return formatString
+    },
+    formattedTime () {
+      let time = this.displayTime;
+
+      if (String((this.format || 'HH:mm')) === time) {
+        time = this.placeholder
+      }
+
+      return time;
     },
     showClearBtn () {
       if ((this.hour && this.hour !== '') || (this.minute && this.minute !== '')) {
@@ -373,7 +383,7 @@ export default {
 
 <template>
 <span class="time-picker">
-  <input class="display-time" :id="id" v-model="displayTime" @click.stop="toggleDropdown" type="text" readonly />
+  <input class="display-time" :id="id" v-model="formattedTime" @click.stop="toggleDropdown" type="text" readonly />
   <span class="clear-btn" v-if="!hideClearButton" v-show="!showDropdown && showClearBtn" @click.stop="clearTime">&times;</span>
   <div class="time-picker-overlay" v-if="showDropdown" @click.stop="toggleDropdown"></div>
   <div class="dropdown" v-show="showDropdown">
