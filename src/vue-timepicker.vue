@@ -15,7 +15,8 @@ export default {
     format: {type: String},
     minuteInterval: {type: Number},
     secondInterval: {type: Number},
-    id: {type: String}
+    id: {type: String},
+    autoHideOn: {type:String} // hours, minutes, seconds
   },
 
   data () {
@@ -354,6 +355,10 @@ export default {
         this.second = value
       } else if (type === 'apm') {
         this.apm = value
+      }
+
+      if (type === this.autoHideOn) {
+        this.showDropdown = false;
       }
     },
 
