@@ -195,14 +195,26 @@ export default {
 
       if (values.indexOf(this.hourType) > -1) {
         this.hour = timeValue[this.hourType]
+
+        if (this.hour < 10) {
+          this.hour = '0' + this.hour;
+        }
       }
 
       if (values.indexOf(this.minuteType) > -1) {
         this.minute = timeValue[this.minuteType]
+
+        if (this.minute < 10) {
+          this.minute = '0' + this.minute;
+        }
       }
 
       if (values.indexOf(this.secondType) > -1) {
         this.second = timeValue[this.secondType]
+
+        if (this.second < 10) {
+          this.second = '0' + this.second;
+        }
       } else {
         this.second = 0
       }
